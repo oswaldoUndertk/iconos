@@ -1,0 +1,1033 @@
+/* ICONOS 2026 — Hoja de estilos
+   Se carga DESPUÉS de bootstrap.min.css. Remapea las variables de Bootstrap
+   a la identidad ICONOS y cubre lo que Bootstrap no resuelve (duotono,
+   ojal, tarjetas de evento/investigador, chips de contacto, etc.). */
+
+/* =========================================================
+   1. Tokens de diseño ICONOS
+   ========================================================= */
+:root {
+  --tinta: #00557f;
+  /* azul-negro profundo */
+  --papel: #f7f6f2;
+  /* fondo claro neutro cálido */
+  --rosa: #52c1eb;
+  /* rosa mexicano — acento */
+  --rosa-oscuro: #2a9cc4;
+  --gris: #3d7a99;
+  --linea: #d9d7cf;
+  --blanco: #ffffff;
+
+  --f-display: "Archivo", system-ui, sans-serif;
+  --f-cuerpo: "Piazzolla", Georgia, serif;
+
+  --radio: 2px;
+  --sombra: 0 14px 40px rgba(26, 27, 46, 0.12);
+
+  /* ---- Remapeo de variables de Bootstrap 5 ---- */
+  --bs-body-font-family: var(--f-cuerpo);
+  --bs-body-font-size: 1.0625rem;
+  --bs-body-line-height: 1.65;
+  --bs-body-color: var(--tinta);
+  --bs-body-bg: var(--papel);
+  --bs-emphasis-color: var(--tinta);
+  --bs-heading-color: var(--tinta);
+
+  --bs-primary: #52c1eb;
+  --bs-primary-rgb: 82, 193, 235;
+  --bs-primary-text-emphasis: var(--rosa-oscuro);
+  --bs-secondary: #00557f;
+  --bs-secondary-rgb: 0, 85, 127;
+
+  --bs-link-color: var(--rosa-oscuro);
+  --bs-link-color-rgb: 42, 156, 196;
+  --bs-link-hover-color: var(--rosa);
+  --bs-link-hover-color-rgb: 82, 193, 235;
+
+  --bs-border-color: var(--linea);
+  --bs-border-radius: var(--radio);
+  --bs-border-radius-sm: var(--radio);
+  --bs-border-radius-lg: var(--radio);
+  --bs-border-radius-xl: var(--radio);
+  --bs-border-radius-pill: 999px;
+
+  --bs-font-sans-serif: var(--f-display);
+}
+
+/* =========================================================
+   2. Tipografía y base
+   ========================================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: var(--f-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h1,
+.h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+}
+
+h2,
+.h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+h3,
+.h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+/* Etiqueta "ojal" — dispositivo visual recurrente */
+.ojal {
+  font-family: var(--f-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ojal::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  background: var(--rosa);
+}
+
+.encabezado-pagina .ojal,
+.bg-tinta .ojal {
+  color: var(--rosa);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  background: var(--tinta);
+  color: var(--blanco);
+  padding: 0.6rem 1rem;
+  z-index: 1080;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.aviso-preview {
+  background: #00557f;
+  color: #52c1eb;
+  text-align: center;
+  font-family: var(--f-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.4rem;
+}
+
+/* =========================================================
+   3. Firma visual: duotono
+   ========================================================= */
+.duotono {
+  position: relative;
+  overflow: hidden;
+  background: var(--tinta);
+  border-radius: var(--radio);
+  aspect-ratio: 16 / 10;
+}
+
+.duotono img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+a:hover .duotono img {
+  transform: scale(1.04);
+}
+
+/* =========================================================
+   4. Navbar (Bootstrap)
+   ========================================================= */
+.iconos-navbar {
+  background: var(--papel);
+  border-bottom: 1px solid var(--linea);
+  padding-block: 0.6rem;
+}
+
+.iconos-navbar .navbar-brand {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--tinta);
+}
+
+.iconos-navbar .nav-link {
+  font-family: var(--f-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.iconos-navbar .nav-link:hover,
+.iconos-navbar .nav-link:focus,
+.iconos-navbar .nav-link.active {
+  color: var(--rosa-oscuro);
+}
+
+.iconos-navbar .dropdown-menu {
+  border-color: var(--linea);
+  box-shadow: var(--sombra);
+}
+
+.iconos-navbar .dropdown-item {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.iconos-navbar .dropdown-item:hover,
+.iconos-navbar .dropdown-item:focus,
+.iconos-navbar .dropdown-item.active {
+  background: var(--papel);
+  color: var(--rosa-oscuro);
+}
+
+.iconos-navbar .navbar-toggler {
+  border-radius: var(--radio);
+  border-color: var(--tinta);
+}
+
+.iconos-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(82, 193, 235, 0.4);
+}
+
+/* =========================================================
+   5. Botones (Bootstrap)
+   ========================================================= */
+.btn {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  --bs-btn-border-radius: var(--radio);
+  --bs-btn-border-width: 2px;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--rosa);
+  --bs-btn-border-color: var(--rosa);
+  --bs-btn-hover-bg: var(--rosa-oscuro);
+  --bs-btn-hover-border-color: var(--rosa-oscuro);
+  --bs-btn-active-bg: var(--rosa-oscuro);
+  --bs-btn-active-border-color: var(--rosa-oscuro);
+  --bs-btn-color: var(--blanco);
+  --bs-btn-hover-color: var(--blanco);
+  --bs-btn-active-color: var(--blanco);
+}
+
+.btn-outline-tinta {
+  --bs-btn-color: var(--tinta);
+  --bs-btn-border-color: var(--tinta);
+  --bs-btn-hover-bg: var(--tinta);
+  --bs-btn-hover-border-color: var(--tinta);
+  --bs-btn-hover-color: var(--blanco);
+  --bs-btn-active-bg: var(--tinta);
+  --bs-btn-active-border-color: var(--tinta);
+}
+
+.btn-outline-light {
+  --bs-btn-color: var(--papel);
+  --bs-btn-border-color: var(--papel);
+  --bs-btn-hover-bg: var(--papel);
+  --bs-btn-hover-color: var(--tinta);
+  --bs-btn-active-bg: var(--papel);
+  --bs-btn-active-color: var(--tinta);
+}
+
+.btn-light {
+  --bs-btn-bg: var(--blanco);
+  --bs-btn-color: var(--rosa-oscuro);
+  --bs-btn-border-color: var(--blanco);
+  --bs-btn-hover-bg: var(--tinta);
+  --bs-btn-hover-color: var(--blanco);
+  --bs-btn-hover-border-color: var(--tinta);
+}
+
+/* Chips de selección (usados en Contacto) con el patrón btn-check + btn */
+.chip-lista .btn-check+.btn {
+  border-radius: 999px;
+  border-width: 1.5px;
+  font-weight: 600;
+}
+
+.chip-lista .btn-check+.btn-outline-tinta {
+  --bs-btn-color: var(--tinta);
+  --bs-btn-border-color: var(--linea);
+}
+
+.chip-lista .btn-check:checked+.btn-outline-tinta {
+  --bs-btn-active-bg: rgba(82, 193, 235, 0.12);
+  --bs-btn-active-color: var(--tinta);
+  --bs-btn-active-border-color: var(--tinta);
+}
+
+/* =========================================================
+   6. Tarjetas (Bootstrap card)
+   ========================================================= */
+.card {
+  --bs-card-border-color: var(--linea);
+  --bs-card-border-radius: var(--radio);
+  --bs-card-cap-bg: transparent;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: var(--sombra);
+  transform: translateY(-3px);
+}
+
+.card .duotono {
+  border-radius: 0;
+}
+
+.tarjeta-meta {
+  font-family: var(--f-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.card-title a {
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.card-title a:hover {
+  color: var(--rosa);
+}
+
+.tarjeta-pie {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.tarjeta-enlace {
+  font-family: var(--f-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--rosa-oscuro);
+}
+
+.tarjeta-enlace:hover {
+  color: var(--rosa);
+}
+
+.tarjeta-modalidad {
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gris);
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+}
+
+/* Animación de entrada al hacer scroll (revelada por el
+   IntersectionObserver en js/listado-programas.js), acotada a
+   [data-grid-programas] para no afectar otras rejillas de tarjetas */
+[data-grid-programas] .card {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+[data-grid-programas] .card.visible {
+  animation: aparecer 0.55s ease forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-grid-programas] .card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Filtro por nivel académico (oferta y cursos y diplomados) */
+.filtro-nivel {
+  --bs-btn-border-radius: 999px;
+  --bs-btn-font-size: 0.85rem;
+}
+
+/* =========================================================
+   7. Carrusel de héroe (Bootstrap carousel)
+   ========================================================= */
+.heroe-carrusel {
+  position: relative;
+  overflow: hidden;
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+.heroe-carrusel .carousel-item {
+  min-height: clamp(30rem, 68vw, 44rem);
+}
+
+.heroe-carrusel .carousel-item.active,
+.heroe-carrusel .carousel-item-next,
+.heroe-carrusel .carousel-item-prev {
+  display: flex;
+  align-items: center;
+}
+
+.heroe-fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  aspect-ratio: unset;
+  border-radius: 0;
+}
+
+.heroe-fondo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(0, 26, 38, 0.94) 0%, rgba(0, 26, 38, 0.8) 42%, rgba(0, 26, 38, 0.4) 78%);
+  z-index: 1;
+}
+
+.heroe-contenido {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+}
+
+.heroe-carrusel h1 {
+  text-transform: uppercase;
+  max-width: 14ch;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+}
+
+.heroe-carrusel h1 em {
+  font-style: normal;
+  color: var(--rosa);
+}
+
+.heroe-carrusel p {
+  max-width: 56ch;
+  font-size: 1.15rem;
+  color: #c9c9d4;
+}
+
+.heroe-carrusel .carousel-control-prev,
+.heroe-carrusel .carousel-control-next {
+  width: 3.5rem;
+  z-index: 3;
+}
+
+.heroe-carrusel .carousel-control-prev-icon,
+.heroe-carrusel .carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(0, 20, 30, 0.35);
+  background-size: 1.15rem;
+  border: 1px solid rgba(247, 246, 242, 0.35);
+}
+
+.heroe-carrusel .carousel-indicators {
+  z-index: 3;
+  margin-bottom: 1.4rem;
+}
+
+.heroe-carrusel .carousel-indicators [data-bs-target] {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background-color: rgba(247, 246, 242, 0.4);
+  border: 0;
+  opacity: 1;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.heroe-carrusel .carousel-indicators .active {
+  width: 1.5rem;
+  background-color: var(--rosa);
+}
+
+/* =========================================================
+   8. Secciones y bandas
+   ========================================================= */
+.bg-tinta {
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+.encabezado-pagina {
+  background: var(--tinta);
+  color: var(--papel);
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.encabezado-pagina p {
+  max-width: 62ch;
+  font-size: 1.1rem;
+  color: #c9c9d4;
+}
+
+.cta-banda {
+  background: var(--rosa);
+  color: var(--blanco);
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+
+.cta-banda h2 {
+  color: var(--blanco);
+}
+
+.cta-fecha {
+  background: var(--blanco);
+  color: var(--tinta);
+  border-radius: var(--radio);
+  padding: 1.6rem 1.7rem 1.5rem;
+  box-shadow: 0 10px 26px rgba(26, 27, 46, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta-fecha:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(26, 27, 46, 0.18);
+}
+
+.cta-fecha-etiqueta {
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rosa-oscuro);
+}
+
+.cta-fecha-dato {
+  font-family: var(--f-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.cta-fecha-dato span {
+  display: block;
+  font-family: var(--f-cuerpo);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gris);
+  margin-top: 0.15rem;
+}
+
+.cta-fecha-enlace {
+  font-family: var(--f-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gris);
+  text-decoration: none;
+}
+
+.cta-fecha-enlace:hover {
+  color: var(--rosa-oscuro);
+}
+
+/* =========================================================
+   9. Página de evento (Galería y Contacto)
+   ========================================================= */
+.evento-fecha,
+.evento-lugar {
+  font-family: var(--f-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gris);
+}
+
+.evento-fecha svg,
+.evento-lugar svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--rosa-oscuro);
+}
+
+.evento-lead {
+  max-width: 62ch;
+  font-size: 1.1rem;
+  color: var(--tinta);
+}
+
+.evento-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--tinta);
+  cursor: pointer;
+}
+
+.evento-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.4) brightness(0.75);
+  transition: transform 0.5s ease;
+}
+
+.evento-video:hover img {
+  transform: scale(1.03);
+}
+
+.evento-video-boton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evento-video-boton span {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.evento-video:hover .evento-video-boton span {
+  transform: scale(1.08);
+}
+
+.evento-video-boton svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--rosa-oscuro);
+  margin-left: 4px;
+}
+
+.evento-video-etiqueta {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1rem;
+  color: var(--blanco);
+  font-family: var(--f-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.evento-imagenes .duotono {
+  aspect-ratio: 4 / 5;
+}
+
+.evento-pie-imagen {
+  font-family: var(--f-display);
+  font-size: 0.8rem;
+  color: var(--gris);
+}
+
+.info-tarjeta {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.5rem 1.6rem;
+  height: 100%;
+}
+
+.info-tarjeta-etiqueta {
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rosa-oscuro);
+}
+
+.info-tarjeta-dato {
+  font-family: var(--f-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tinta);
+  line-height: 1.35;
+}
+
+.info-tarjeta p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--gris);
+}
+
+/* =========================================================
+   10. Tarjeta de investigador (RICI)
+   ========================================================= */
+.investigador-foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--tinta);
+  cursor: pointer;
+}
+
+.investigador-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08);
+  transition: transform 0.5s ease;
+}
+
+.investigador-foto:hover img,
+.investigador-foto:focus-visible img {
+  transform: scale(1.05);
+}
+
+.investigador-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.3rem 1.2rem;
+  background: linear-gradient(to top, rgba(0, 8, 20, 0.88) 0%, rgba(0, 8, 20, 0.35) 50%, rgba(0, 8, 20, 0) 78%);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.investigador-foto:hover .investigador-overlay,
+.investigador-foto:focus-visible .investigador-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.investigador-overlay .investigador-nombre {
+  margin: 0 0 0.15rem;
+  font-size: 0.92rem;
+  color: var(--blanco);
+}
+
+.investigador-overlay .investigador-rol {
+  font-family: var(--f-cuerpo);
+  font-style: normal;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.35;
+  margin: 0;
+}
+
+@media (hover: none) {
+  .investigador-overlay {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.investigador-perfil {
+  border-top: none;
+  padding: 0.9rem 1.4rem 1.4rem;
+}
+
+.investigador-perfil summary {
+  cursor: pointer;
+  font-family: var(--f-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--rosa-oscuro);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.investigador-perfil summary::-webkit-details-marker {
+  display: none;
+}
+
+.investigador-perfil summary::after {
+  content: "+";
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.investigador-perfil[open] summary::after {
+  content: "–";
+}
+
+.investigador-perfil summary:hover {
+  color: var(--rosa);
+}
+
+.investigador-cuerpo {
+  padding-top: 0.8rem;
+  font-size: 0.92rem;
+  color: var(--tinta);
+}
+
+.investigador-cuerpo p {
+  margin: 0 0 0.8rem;
+}
+
+.investigador-correo {
+  font-family: var(--f-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gris);
+  word-break: break-word;
+}
+
+[data-grid-programas] .card.tarjeta-investigador {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+[data-grid-programas] .card.tarjeta-investigador.visible {
+  animation: aparecer 0.55s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-grid-programas] .card.tarjeta-investigador {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* =========================================================
+   11. Contacto — selector de intereses y formulario
+   ========================================================= */
+.chip-grupo {
+  margin-bottom: 2.2rem;
+}
+
+.chip-grupo-titulo {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.9rem;
+  color: var(--tinta);
+}
+
+.chip-grupo-sub {
+  font-size: 0.88rem;
+  color: var(--gris);
+  margin: -0.5rem 0 0.9rem;
+}
+
+.redes-fila {
+  margin-top: 0.6rem;
+}
+
+.panel-envio-nota {
+  font-size: 0.78rem;
+  color: var(--gris);
+  text-align: center;
+  margin-top: 0.7rem;
+}
+
+.campo-nombre input {
+  border-color: var(--linea);
+  border-radius: var(--radio);
+}
+
+.campo-nombre input:focus {
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 0.2rem rgba(82, 193, 235, 0.25);
+}
+
+.panel-envio {
+  position: sticky;
+  top: 6rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.8rem;
+}
+
+.mensaje-preview {
+  background: var(--papel);
+  border: 1px dashed var(--linea);
+  border-radius: var(--radio);
+  padding: 1.1rem 1.2rem;
+  min-height: 5rem;
+}
+
+.mensaje-preview span {
+  display: block;
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gris);
+  margin-bottom: 0.5rem;
+}
+
+.mensaje-preview p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--tinta);
+  line-height: 1.5;
+}
+
+.mensaje-preview p.vacio {
+  color: var(--gris);
+  font-style: italic;
+}
+
+.boton-whatsapp {
+  --bs-btn-bg: #25d366;
+  --bs-btn-border-color: #25d366;
+  --bs-btn-hover-bg: #1ebe58;
+  --bs-btn-hover-border-color: #1ebe58;
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-border-radius: 999px;
+}
+
+.boton-whatsapp[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.red-icono {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--linea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tinta);
+  transition: all 0.2s ease;
+}
+
+.red-icono:hover {
+  background: var(--tinta);
+  color: var(--papel);
+  border-color: var(--tinta);
+}
+
+.red-icono svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* =========================================================
+   12. Pie de página
+   ========================================================= */
+.sitio-pie {
+  background: #1a1a1a;
+  color: #b9b9c6;
+  padding-block: 3.5rem 2rem;
+  font-size: 0.95rem;
+}
+
+.sitio-pie a {
+  color: var(--papel);
+}
+
+.sitio-pie a:hover {
+  color: var(--rosa);
+}
+
+.sitio-pie h4 {
+  color: var(--papel);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.sitio-pie ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.pie-legal {
+  border-top: 1px solid #33344a;
+  padding-top: 1.4rem;
+}
+
+/* =========================================================
+   13. Contenido WordPress (Gutenberg) y paginación
+   ========================================================= */
+.wp-block-quote {
+  border-left: 4px solid var(--rosa);
+  margin-left: 0;
+  padding-left: 1.4rem;
+  font-style: italic;
+}
+
+.entrada-contenido>* {
+  margin-block: 1.1rem;
+}
+
+.paginacion .page-link {
+  color: var(--tinta);
+  border-color: var(--linea);
+  border-radius: var(--radio) !important;
+}
+
+.paginacion .page-item.active .page-link {
+  background: var(--tinta);
+  border-color: var(--tinta);
+}
